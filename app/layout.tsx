@@ -1,16 +1,18 @@
+import "./globals.css";
+
 export const metadata = {
-  title: 'Citizen Voice India',
-  description: 'Citizen Voice India Application',
-}
+  title: "Citizen Voice India",
+  description: "Citizen Voice Platform",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
       <body>{children}</body>
     </html>
-  )
+  );
 }
