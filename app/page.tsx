@@ -1,10 +1,28 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
-  Search, Sun, Moon, CheckCircle, Vote, Mail, BookOpen, 
-  ChevronRight, Calendar, Landmark, AlertCircle, Shield, Award 
+  Search, Sun, Moon, CheckCircle, Mail, 
+  Shield 
 } from 'lucide-react';
+
+// Custom Image Component to replace next/image conflicts
+function Image({ src, alt, caption }: { src: string; alt: string; caption?: string }) {
+  return (
+    <figure className="flex flex-col items-center my-4">
+      <img 
+        src={src} 
+        alt={alt} 
+        className="rounded-xl shadow-lg border border-slate-700 max-w-full h-auto object-cover" 
+      />
+      {caption && (
+        <figcaption className="text-xs text-slate-400 mt-2 text-center italic">
+          {caption}
+        </figcaption>
+      )}
+    </figure>
+  );
+}
 
 export default function CitizenVoiceHome() {
   const [darkMode, setDarkMode] = useState(true);
@@ -36,26 +54,26 @@ export default function CitizenVoiceHome() {
   };
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'bg-navy-900 text-slate-100' : 'bg-slate-50 text-slate-900'}`}>
+    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'bg-slate-950 text-slate-100' : 'bg-slate-50 text-slate-900'}`}>
       
       {/* GLOBAL NAVBAR */}
       <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-opacity-70 border-b border-slate-700/30 px-6 py-4 flex justify-between items-center">
         <div className="flex items-center gap-3">
-          <div className="h-8 w-8 rounded-full bg-gradient-to-tr from-saffron-500 via-white to-indiaGreen-500 flex items-center justify-center font-bold text-navy-900 text-xs shadow-md">
+          <div className="h-8 w-8 rounded-full bg-gradient-to-tr from-orange-500 via-white to-emerald-600 flex items-center justify-center font-bold text-slate-900 text-xs shadow-md">
             CVI
           </div>
-          <span className="font-extrabold text-lg tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-saffron to-indiaGreen">
+          <span className="font-extrabold text-lg tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-emerald-500">
             Citizen Voice India
           </span>
         </div>
 
         <div className="hidden md:flex items-center gap-8 text-sm font-medium opacity-90">
-          <a href="#about" className="hover:text-saffron transition">About</a>
-          <a href="#updates" className="hover:text-saffron transition">Updates</a>
-          <a href="#timeline" className="hover:text-saffron transition">Timeline</a>
-          <a href="#opinion" className="hover:text-saffron transition">Opinion</a>
-          <a href="#polls" className="hover:text-saffron transition">Polls</a>
-          <a href="#constitution" className="hover:text-saffron transition">Constitution</a>
+          <a href="#about" className="hover:text-orange-400 transition">About</a>
+          <a href="#updates" className="hover:text-orange-400 transition">Updates</a>
+          <a href="#timeline" className="hover:text-orange-400 transition">Timeline</a>
+          <a href="#opinion" className="hover:text-orange-400 transition">Opinion</a>
+          <a href="#polls" className="hover:text-orange-400 transition">Polls</a>
+          <a href="#constitution" className="hover:text-orange-400 transition">Constitution</a>
         </div>
 
         <div className="flex items-center gap-4">
@@ -64,18 +82,17 @@ export default function CitizenVoiceHome() {
             className="p-2 rounded-full border border-slate-700/50 hover:bg-slate-800/50 transition"
             aria-label="Toggle Theme"
           >
-            {darkMode ? <Sun className="w-4 h-4 text-saffron" /> : <Moon className="w-4 h-4 text-navy" />}
+            {darkMode ? <Sun className="w-4 h-4 text-orange-400" /> : <Moon className="w-4 h-4 text-slate-900" />}
           </button>
         </div>
       </nav>
 
       {/* HERO SECTION */}
       <section className="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-6 overflow-hidden">
-        {/* Subtle Backdrop Accent */}
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#FF9933_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
         
         <div className="max-w-5xl text-center space-y-8 z-10">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-saffron/30 bg-saffron/10 text-saffron text-xs tracking-wider uppercase font-semibold">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-400 text-xs tracking-wider uppercase font-semibold">
             <Shield className="w-3.5 h-3.5" /> Non-Partisan Civic Platform
           </div>
 
@@ -88,7 +105,7 @@ export default function CitizenVoiceHome() {
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-            <a href="#about" className="px-6 py-3.5 rounded-xl bg-saffron text-navy-900 font-bold hover:bg-saffron/90 transition shadow-lg shadow-saffron/20">
+            <a href="#about" className="px-6 py-3.5 rounded-xl bg-orange-500 text-slate-950 font-bold hover:bg-orange-400 transition shadow-lg shadow-orange-500/20">
               Learn More
             </a>
             <a href="#timeline" className="px-6 py-3.5 rounded-xl border border-slate-700 backdrop-blur-md hover:bg-slate-800/40 transition">
@@ -97,7 +114,7 @@ export default function CitizenVoiceHome() {
             <a href="#updates" className="px-6 py-3.5 rounded-xl border border-slate-700 backdrop-blur-md hover:bg-slate-800/40 transition">
               Latest Updates
             </a>
-            <a href="#opinion" className="px-6 py-3.5 rounded-xl bg-indiaGreen text-white font-semibold hover:bg-indiaGreen/90 transition">
+            <a href="#opinion" className="px-6 py-3.5 rounded-xl bg-emerald-600 text-white font-semibold hover:bg-emerald-500 transition">
               Share Opinion
             </a>
           </div>
@@ -122,7 +139,7 @@ export default function CitizenVoiceHome() {
       <section id="about" className="max-w-6xl mx-auto px-6 py-28">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl md:text-5xl font-bold">Understanding the CJP Movement</h2>
-          <p className="text-slate-400 max-w-2xl mx-auto">A objective overview of the civic movement, its origins, public interest focus, and legislative developments.</p>
+          <p className="text-slate-400 max-w-2xl mx-auto">An objective overview of the civic movement, its origins, public interest focus, and legislative developments.</p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -133,7 +150,7 @@ export default function CitizenVoiceHome() {
             { title: "Current Status", desc: "Under review by policy committees with active public feedback submissions ongoing." }
           ].map((item, idx) => (
             <div key={idx} className="p-6 rounded-2xl border border-slate-800 bg-slate-900/40 backdrop-blur-md hover:border-slate-700 transition">
-              <h3 className="text-lg font-bold text-saffron mb-2">{item.title}</h3>
+              <h3 className="text-lg font-bold text-orange-400 mb-2">{item.title}</h3>
               <p className="text-sm text-slate-400 leading-relaxed">{item.desc}</p>
             </div>
           ))}
@@ -147,7 +164,7 @@ export default function CitizenVoiceHome() {
             <h2 className="text-3xl font-bold">Verified Live Updates</h2>
             <p className="text-sm text-slate-400 mt-1">Attributed directly to official record sources.</p>
           </div>
-          <span className="text-xs px-3 py-1 rounded-full bg-indiaGreen/20 text-indiaGreen font-semibold">Live Feed</span>
+          <span className="text-xs px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 font-semibold">Live Feed</span>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
@@ -159,7 +176,7 @@ export default function CitizenVoiceHome() {
             <div key={i} className="p-6 rounded-2xl border border-slate-800 bg-slate-900/30 backdrop-blur-md flex flex-col justify-between space-y-4">
               <div>
                 <div className="flex justify-between items-center text-xs mb-3">
-                  <span className="text-saffron font-semibold">{news.tag}</span>
+                  <span className="text-orange-400 font-semibold">{news.tag}</span>
                   <span className="text-slate-500">{news.time}</span>
                 </div>
                 <h3 className="font-semibold text-base leading-snug">{news.title}</h3>
@@ -183,7 +200,7 @@ export default function CitizenVoiceHome() {
             { phase: "Current Situation", date: "Present Day", details: "Policy review committee assessing submitted citizen recommendations." }
           ].map((ev, idx) => (
             <div key={idx} className="relative pl-8">
-              <div className="absolute -left-[9px] top-1.5 h-4 w-4 rounded-full bg-saffron ring-4 ring-navy-900" />
+              <div className="absolute -left-[9px] top-1.5 h-4 w-4 rounded-full bg-orange-400 ring-4 ring-slate-950" />
               <div className="md:absolute md:-left-36 md:top-1 text-xs text-slate-500 font-semibold">{ev.date}</div>
               <h3 className="text-lg font-bold text-slate-200">{ev.phase}</h3>
               <p className="text-sm text-slate-400 mt-1 max-w-lg">{ev.details}</p>
@@ -199,22 +216,22 @@ export default function CitizenVoiceHome() {
           <p className="text-sm text-slate-400 mb-6">Your voice matters. Submissions are reviewed for civic constructive guidelines.</p>
 
           {opinionSubmitted ? (
-            <div className="p-6 rounded-2xl bg-indiaGreen/10 border border-indiaGreen/30 text-indiaGreen flex items-center gap-3">
+            <div className="p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center gap-3">
               <CheckCircle className="w-5 h-5 flex-shrink-0" />
               <span className="font-semibold text-sm">Thank you for sharing your opinion.</span>
             </div>
           ) : (
             <form onSubmit={(e) => { e.preventDefault(); setOpinionSubmitted(true); }} className="space-y-4">
               <div className="grid md:grid-cols-2 gap-4">
-                <input type="text" placeholder="Name (optional)" className="w-full p-3.5 rounded-xl bg-slate-800/50 border border-slate-700 text-sm outline-none focus:border-saffron" />
-                <input type="text" placeholder="State" required className="w-full p-3.5 rounded-xl bg-slate-800/50 border border-slate-700 text-sm outline-none focus:border-saffron" />
+                <input type="text" placeholder="Name (optional)" className="w-full p-3.5 rounded-xl bg-slate-800/50 border border-slate-700 text-sm outline-none focus:border-orange-400" />
+                <input type="text" placeholder="State" required className="w-full p-3.5 rounded-xl bg-slate-800/50 border border-slate-700 text-sm outline-none focus:border-orange-400" />
               </div>
               <div className="grid md:grid-cols-2 gap-4">
-                <input type="text" placeholder="Age Group (e.g. 18-25)" required className="w-full p-3.5 rounded-xl bg-slate-800/50 border border-slate-700 text-sm outline-none focus:border-saffron" />
-                <input type="text" placeholder="Occupation" required className="w-full p-3.5 rounded-xl bg-slate-800/50 border border-slate-700 text-sm outline-none focus:border-saffron" />
+                <input type="text" placeholder="Age Group (e.g. 18-25)" required className="w-full p-3.5 rounded-xl bg-slate-800/50 border border-slate-700 text-sm outline-none focus:border-orange-400" />
+                <input type="text" placeholder="Occupation" required className="w-full p-3.5 rounded-xl bg-slate-800/50 border border-slate-700 text-sm outline-none focus:border-orange-400" />
               </div>
-              <textarea placeholder="Your Opinion or Suggestions..." rows={4} required className="w-full p-3.5 rounded-xl bg-slate-800/50 border border-slate-700 text-sm outline-none focus:border-saffron" />
-              <button type="submit" className="w-full py-3.5 rounded-xl bg-saffron text-navy-900 font-bold hover:bg-saffron/90 transition">
+              <textarea placeholder="Your Opinion or Suggestions..." rows={4} required className="w-full p-3.5 rounded-xl bg-slate-800/50 border border-slate-700 text-sm outline-none focus:border-orange-400" />
+              <button type="submit" className="w-full py-3.5 rounded-xl bg-orange-500 text-slate-950 font-bold hover:bg-orange-400 transition">
                 Submit Perspective
               </button>
             </form>
@@ -226,7 +243,7 @@ export default function CitizenVoiceHome() {
       <section id="polls" className="max-w-3xl mx-auto px-6 py-20 border-t border-slate-800/60">
         <div className="p-8 rounded-3xl border border-slate-800 bg-slate-900/50 backdrop-blur-xl space-y-6">
           <div>
-            <span className="text-xs font-bold text-saffron uppercase tracking-widest">Public Poll</span>
+            <span className="text-xs font-bold text-orange-400 uppercase tracking-widest">Public Poll</span>
             <h2 className="text-xl font-bold mt-1">What is your opinion on the proposed reform roadmap?</h2>
           </div>
 
@@ -245,7 +262,7 @@ export default function CitizenVoiceHome() {
                   className="w-full p-4 rounded-xl border border-slate-800 bg-slate-800/30 text-left relative overflow-hidden transition hover:border-slate-700"
                 >
                   <div 
-                    className="absolute left-0 top-0 bottom-0 bg-saffron/15 transition-all duration-500" 
+                    className="absolute left-0 top-0 bottom-0 bg-orange-500/15 transition-all duration-500" 
                     style={{ width: `${pct}%` }} 
                   />
                   <div className="relative z-10 flex justify-between items-center text-sm font-medium">
@@ -263,7 +280,7 @@ export default function CitizenVoiceHome() {
       {/* DRAFT EMAIL CAMPAIGN TOOL */}
       <section className="max-w-3xl mx-auto px-6 py-20 border-t border-slate-800/60">
         <div className="p-8 rounded-3xl border border-slate-800 bg-slate-900/50 backdrop-blur-xl space-y-4">
-          <div className="flex items-center gap-2 text-saffron">
+          <div className="flex items-center gap-2 text-orange-400">
             <Mail className="w-5 h-5" />
             <h2 className="text-xl font-bold text-slate-100">Draft Representative Communication</h2>
           </div>
@@ -299,7 +316,7 @@ export default function CitizenVoiceHome() {
             </div>
             <button 
               onClick={handleSendMail}
-              className="w-full py-3.5 rounded-xl bg-indiaGreen text-white font-bold hover:bg-indiaGreen/90 transition text-sm"
+              className="w-full py-3.5 rounded-xl bg-emerald-600 text-white font-bold hover:bg-emerald-500 transition text-sm"
             >
               Open Email App & Send
             </button>
@@ -310,25 +327,25 @@ export default function CitizenVoiceHome() {
       {/* CONSTITUTION SECTION */}
       <section id="constitution" className="max-w-5xl mx-auto px-6 py-28 border-t border-slate-800/60">
         <div className="text-center mb-16">
-          <span className="text-xs font-bold text-saffron uppercase tracking-widest">Foundation of Democracy</span>
+          <span className="text-xs font-bold text-orange-400 uppercase tracking-widest">Foundation of Democracy</span>
           <h2 className="text-3xl md:text-5xl font-black mt-2">The Constitution of India</h2>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 mb-16">
           <div className="p-6 rounded-2xl border border-slate-800 bg-slate-900/40">
-            <h3 className="font-bold text-saffron mb-2">Preamble</h3>
+            <h3 className="font-bold text-orange-400 mb-2">Preamble</h3>
             <p className="text-xs text-slate-400 leading-relaxed">
               Constitutes India into a SOVEREIGN SOCIALIST SECULAR DEMOCRATIC REPUBLIC securing Justice, Liberty, Equality, and Fraternity.
             </p>
           </div>
           <div className="p-6 rounded-2xl border border-slate-800 bg-slate-900/40">
-            <h3 className="font-bold text-saffron mb-2">Fundamental Rights</h3>
+            <h3 className="font-bold text-orange-400 mb-2">Fundamental Rights</h3>
             <p className="text-xs text-slate-400 leading-relaxed">
               Guarantees essential liberties including Equality, Freedom of Speech, Protection of Life, and Constitutional Remedies.
             </p>
           </div>
           <div className="p-6 rounded-2xl border border-slate-800 bg-slate-900/40">
-            <h3 className="font-bold text-saffron mb-2">Fundamental Duties</h3>
+            <h3 className="font-bold text-orange-400 mb-2">Fundamental Duties</h3>
             <p className="text-xs text-slate-400 leading-relaxed">
               Encourages citizens to abide by constitutional ideals, promote harmony, and safeguard public property.
             </p>
@@ -341,7 +358,7 @@ export default function CitizenVoiceHome() {
           
           <div className="grid md:grid-cols-2 gap-8 items-center mb-8">
             <div className="space-y-4">
-              <h4 className="text-xl font-bold text-saffron">Dr. B. R. Ambedkar</h4>
+              <h4 className="text-xl font-bold text-orange-400">Dr. B. R. Ambedkar</h4>
               <p className="text-sm text-slate-300 leading-relaxed">
                 As Chairman of the Drafting Committee, Dr. Bhimrao Ramji Ambedkar served as the principal architect of the Indian Constitution. His visionary stewardship established a robust legal framework guaranteeing civic rights, social equality, and democratic governance.
               </p>
@@ -350,7 +367,7 @@ export default function CitizenVoiceHome() {
             {/* Dr. B. R. Ambedkar Portrait */}
             <div className="flex flex-col items-center">
               <Image 
-                src="image_agent_tag_13891836486728175827" 
+                src="https://via.placeholder.com/300x400?text=Dr.+B.+R.+Ambedkar" 
                 alt="Portrait of Dr. B. R. Ambedkar" 
                 caption="Dr. B. R. Ambedkar (1891–1956), Principal Architect of the Indian Constitution" 
               />
@@ -359,17 +376,17 @@ export default function CitizenVoiceHome() {
 
           <div className="grid md:grid-cols-2 gap-8 pt-6 border-t border-slate-800">
             <div>
-              <h4 className="text-sm font-bold text-slate-200 mb-3">Original Preamble Document</h4>
+              <h4 className="text-sm font-bold text-slate-200 mb-3 text-center">Original Preamble Document</h4>
               <Image 
-                src="image_agent_tag_13891836486728176544" 
+                src="https://via.placeholder.com/400x300?text=Preamble+Document" 
                 alt="The Constitution of India Preamble Calligraphy Document" 
                 caption="Calligraphed Preamble of the Constitution of India" 
               />
             </div>
             <div>
-              <h4 className="text-sm font-bold text-slate-200 mb-3">National Emblem & Symbols</h4>
+              <h4 className="text-sm font-bold text-slate-200 mb-3 text-center">National Emblem & Symbols</h4>
               <Image 
-                src="image_agent_tag_13891836486728177261" 
+                src="https://via.placeholder.com/400x300?text=National+Emblem" 
                 alt="Indian National Flag with Ashoka Chakra" 
                 caption="National Flag representing courage, peace, and progress" 
               />
@@ -388,7 +405,7 @@ export default function CitizenVoiceHome() {
             { label: "Verified Briefs", count: "142" }
           ].map((stat, i) => (
             <div key={i} className="p-6 rounded-2xl border border-slate-800/40 bg-slate-900/20">
-              <div className="text-3xl md:text-4xl font-black text-saffron">{stat.count}</div>
+              <div className="text-3xl md:text-4xl font-black text-orange-400">{stat.count}</div>
               <div className="text-xs text-slate-400 mt-2 font-medium">{stat.label}</div>
             </div>
           ))}
