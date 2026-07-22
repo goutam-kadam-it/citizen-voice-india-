@@ -2,7 +2,7 @@ import React from 'react';
 
 export const metadata = {
   title: 'Citizen Voice India',
-  description: 'Civic engagement and public opinion platform',
+  description: 'Civic engagement platform',
 };
 
 export default function RootLayout({
