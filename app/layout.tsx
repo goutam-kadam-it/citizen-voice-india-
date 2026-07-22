@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 export const metadata = {
   title: 'Citizen Voice India',
   description: 'Civic engagement platform',
